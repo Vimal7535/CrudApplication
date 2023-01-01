@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CrudApplication.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+           <h1 class="text-center text-primary">Employee Record</h1>
+            <a class="btn btn-sm btn-success m-1"asp-controller="Employee"asp-action="Create">+AddNew</a>
+            <p class="text-center text-success">@TempData["Error"]</p>
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr class="text-center">
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Salary</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+            <tbody>
+                <tr class="text-center">
+                    <td>@item.Name</td>
+                    <td>@item.City</td>
+                    <td>@item.State</td>
+                    <td>@item.Salary</td>
+                    <td>
+                        <a class="btn btn-sm btn-warning"asp-controller="Employee"asp-action="Edit"asp-route-id="@item.Id">Edit</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-danger" asp-controller="Employee" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                    @*<td a class="btn btn-sm btn-warning" asp-controller="Employee" asp-action="Edit" asp-route-id="@item.Id">Edit</td>
+                    <td a class="btn btn-sm btn-danger" asp-controller="Employee" asp-action="Delete" asp-route-id="@item.Id">Delete</td>*@
+                </tr>
+            </tbody>
+                }
+            </table>
+        </div>
+    </div>
+</div>
